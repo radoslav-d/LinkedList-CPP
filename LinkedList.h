@@ -22,43 +22,43 @@ std::ostream& operator<< (std::ostream& output, const LinkedList<T>& other);
 template <typename T>
 class LinkedList
 {
-public:
-	LinkedList();
-	~LinkedList();
-	ListElement<T>* begin();
-	ListElement<T>* next();
-	ListElement<T>* end();
-	void pushFront(T element);
-	void pushBack(T element);
-	T* popFront();
-	T* popBack();
-	void deleteNode(T element);
-	T getValue(size_t index);
-	T getValue();
-	void setValue(T element, size_t index);
-	bool contains(T element);
-	bool isEmpty() const;
-	bool hasNext();
-	size_t size() const;
-	friend std::ostream& operator<< <>(std::ostream& output, const LinkedList<T>& other);
+    public:
+        LinkedList();
+        ~LinkedList();
+        ListElement<T>* begin();
+        ListElement<T>* next();
+        ListElement<T>* end();
+        void pushFront(T element);
+        void pushBack(T element);
+        T* popFront();
+        T* popBack();
+        void deleteNode(T element);
+        T getValue(size_t index);
+        T getValue();
+        void setValue(T element, size_t index);
+        bool contains(T element);
+        bool isEmpty() const;
+        bool hasNext();
+        size_t size() const;
+        friend std::ostream& operator<< <>(std::ostream& output, const LinkedList<T>& other);
 
-private:
-	ListElement<T>* first;
-	ListElement<T>* last;
-	ListElement<T>* current;
-	size_t listSize;
-	ListElement<T>* locate(size_t index);
-	void addFirst(T element);
-	T* removeOnly();
+    private:
+        ListElement<T>* first;
+        ListElement<T>* last;
+        ListElement<T>* current;
+        size_t listSize;
+        ListElement<T>* locate(size_t index);
+        void addFirst(T element);
+        T* removeOnly();
 };
 
 template <typename T>
 LinkedList<T>::LinkedList()
 {
-	this->first = NULL;
-	this->last = NULL;
-	this->current = NULL;
-	this->listSize = 0;
+    this->first = NULL;
+    this->last = NULL;
+    this->current = NULL;
+    this->listSize = 0;
 }
 
 template <typename T>
@@ -77,82 +77,82 @@ LinkedList<T>::~LinkedList()
 template <typename T>
 ListElement<T>* LinkedList<T>::begin()
 {
-	this->current = this->first;
-	return this->first;
+    this->current = this->first;
+    return this->first;
 }
 
 template <typename T>
 ListElement<T>* LinkedList<T>::next()
 {
-	this->current = this->current->getNext();
-	return this->current;
+    this->current = this->current->getNext();
+    return this->current;
 }
 
 template <typename T>
 ListElement<T>* LinkedList<T>::end()
 {
-	return this->last;
+    return this->last;
 }
 
 template<typename T>
 bool LinkedList<T>::isEmpty() const
 {
-	return this->listSize == 0;
+    return this->listSize == 0;
 }
 
 template<typename T>
 size_t LinkedList<T>::size() const
 {
-	return this->listSize;
+    return this->listSize;
 }
 
 template<typename T>
 void LinkedList<T>::pushFront(T element)
 {
-	if (this->isEmpty())
+    if (this->isEmpty())
     {
         this->addFirst(element);
     }
-	else
-	{
-		ListElement<T>* node = new ListElement<T>();
+    else
+    {
+        ListElement<T>* node = new ListElement<T>();
         node->setValue(element);
         node->setNext(first);
-		this->first = node;
-	}
-	this->listSize++;
+        this->first = node;
+    }
+    this->listSize++;
 }
 
 template<typename T>
 void LinkedList<T>::pushBack(T element)
 {
-	if (this->isEmpty())
+    if (this->isEmpty())
     {
         this->addFirst(element);
     }
-	else
-	{
-	    ListElement<T>* node = new ListElement<T>();
+    else
+    {
+        ListElement<T>* node = new ListElement<T>();
         node->setValue(element);
         node->setNext(NULL);
         this->last->setNext(node);
         this->last = node;
-	}
-	this->listSize++;
+    }
+    this->listSize++;
 }
 
 template<typename T>
 T* LinkedList<T>::popFront()
 {
-	if (this->isEmpty())
+    if (this->isEmpty())
     {
         return NULL;
     }
-	else if (this->size() == 1)
+    else if (this->size() == 1)
     {
         return this->removeOnly();
     }
-	else
+    else
     {
         ListElement<T>* cursor = this->first;
         this->first = this->first->getNext();
@@ -167,11 +167,11 @@ T* LinkedList<T>::popFront()
 template<typename T>
 T* LinkedList<T>::popBack()
 {
-	if (this->isEmpty())
+    if (this->isEmpty())
     {
         return NULL;
     }
-	else if (this->size() == 1)
+    else if (this->size() == 1)
     {
         return this->removeOnly();
     }
@@ -191,12 +191,12 @@ T* LinkedList<T>::popBack()
 template<typename T>
 void LinkedList<T>::deleteNode(T element)
 {
-	if (this->size() <= 1 || this->first->getValue() == element)
+    if (this->size() <= 1 || this->first->getValue() == element)
     {
         this->popFront();
         return;
     }
-	if (this->last->getValue() == element)
+    if (this->last->getValue() == element)
     {
         this->popBack();
         return;
@@ -216,27 +216,27 @@ void LinkedList<T>::deleteNode(T element)
 template<typename T>
 T LinkedList<T>::getValue(size_t index)
 {
-	ListElement<T>* cursor = this->locate(index);
-	return cursor->getValue();
+    ListElement<T>* cursor = this->locate(index);
+    return cursor->getValue();
 }
 
 template<typename T>
 T LinkedList<T>::getValue()
 {
-	return this->current->getValue();
+    return this->current->getValue();
 }
 
 template<typename T>
 void LinkedList<T>::setValue(T element, size_t index)
 {
-	ListElement<T>* cursor = this->locate(index);
-	cursor->setValue(element);
+    ListElement<T>* cursor = this->locate(index);
+    cursor->setValue(element);
 }
 
 template<typename T>
 bool LinkedList<T>::contains(T element)
 {
-	if (this->isEmpty())
+    if (this->isEmpty())
     {
         return false;
     }
@@ -255,7 +255,7 @@ bool LinkedList<T>::contains(T element)
 template<typename T>
 bool LinkedList<T>::hasNext()
 {
-	return this->current != NULL && this->current->getNext() != NULL;
+    return this->current != NULL && this->current->getNext() != NULL;
 }
 
 template<typename T>
