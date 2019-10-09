@@ -1,0 +1,4 @@
+## C++ and C source files
+*.h                     text diff=cpp
+*.c                     text diff=cpp
+*.cpp                   text diff=cpp
