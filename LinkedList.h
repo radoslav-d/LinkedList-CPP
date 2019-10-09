@@ -64,7 +64,7 @@ LinkedList<T>::LinkedList()
 template <typename T>
 LinkedList<T>::~LinkedList()
 {
-	ListElement<T>* cursor;
+    ListElement<T>* cursor;
     while (this->first != NULL)
     {
         cursor = this->first;
